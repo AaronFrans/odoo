@@ -20,6 +20,11 @@ class EstateProperty(models.Model):
     garage = fields.Boolean(string="Garage Available")
     garden = fields.Boolean(string="Garden Available")
     garden_area = fields.Integer(string="Garden size")
-    garden_orientation= fields.Selection(string='Garden Orientation',
-                                         selection=[('north', 'North'), ('east', 'East'), ('south', 'South'), ('west', 'West')],)
+    garden_orientation = fields.Selection(string='Garden Orientation',
+                                          selection=[('north', 'North'), ('east', 'East'), ('south', 'South'), ('west', 'West')],)
     active = fields.Boolean(string="Active", default=True)
+    state = fields.Selection(string='Status',
+                             selection=[('new', ' New'), ('offer_received', 'Offer Received'), ('offer_accepted', 'Offer Accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')],
+                             default = 'new',
+                             required = True,
+                             copy = False,)
