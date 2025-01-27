@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="digimon_root_menu" name="Digimon">
+        <menuitem id="digimon_first_level_menu" name="First Level">
+            <menuitem id="digimon_model_menu_action" action="digimon_action" />
+        </menuitem>
+    </menuitem>
+</odoo>
