@@ -1,7 +1,42 @@
 <?xml version="1.0"?>
 <odoo>
+    <record id="digimon_tree_action" model="ir.ui.view">
+        <field name="name">digimon.property.tree.view</field>
+        <field name="model">digimon.property</field>
+        <field name="arch" type="xml">
+            <tree string="Digimon Properties">
+                <field name="name" />
+                <field name="level" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="digimon_form_action" model="ir.ui.view">
+        <field name="name">digimon.property.form.view</field>
+        <field name="model">digimon.property</field>
+        <field name="arch" type="xml">
+            <form string="digimon Details">
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <field name="image" widget="image" />
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <field name="name" />
+                                <field name="level" />
+                                <field name="image_url" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="digimon_action" model="ir.actions.act_window">
-        <field name="name">Digimon Action</field>
+        <field name="name">Digimon List</field>
         <field name="res_model">digimon.property</field>
         <field name="view_mode">tree,form</field>
     </record>
