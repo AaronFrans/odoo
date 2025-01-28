@@ -12,8 +12,11 @@ class DigimonProperty(models.Model):
     name = fields.Char(string="Name", required=True)
     image_url =  fields.Char(string="Image URL", required=True)
     level =  fields.Char(string="Level", required=True)
+    image = fields.Binary( string="External Image",  compute="_compute_external_image")
     
-    image = fields.Binary(string="Image", attachment=False,)
+    def _compute_external_image(self):
+        for record in self:
+            record.image = self.fetch_image_from_url(record.image_url)
     
     @api.model
     def init(self):
@@ -35,19 +38,19 @@ class DigimonProperty(models.Model):
         response = requests.request("GET", api_url, headers=headers, data=payload)
         
         if response.status_code == 200:
-            #make async to speed up load times
+            
             data = response.json()
+            
             for digimon in data:
+                
                 digimon_name = digimon['name']
-                image_url = digimon['img']
-                image_result = self.fetch_image_from_url(digimon['img'])
                 
                 _logger.info("loading image for %s" % digimon_name)
+                
                 self.env['digimon.property'].sudo().create({
                     'name': digimon_name,
-                    'image_url': image_url,
-                    'level': digimon['level'],
-                    'image': image_result
+                    'image_url': digimon['img'] ,
+                    'level': digimon['level']
                 })
 
     #code via: https://holdenrehg.com/blog/2019-02-04_odoo-images-and-attachments-load-from-url
