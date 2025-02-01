@@ -3,13 +3,17 @@
     <!-- only nest singular menu items, otherwise use parent-->
     <menuitem id="estate_root_menu" name="Real Estate" />
 
-    <menuitem id="estate_advertisements_menu" name="Advertisements" parent="estate_root_menu">
-        <menuitem id="estate_model_menu_action" action="estate_tutorial_test_action" />
-    </menuitem>
+    <menuitem id="estate_advertisements_menu" name="Advertisements" parent="estate_root_menu" />
+
+    <menuitem id="estate_model_menu_action" action="estate_tutorial_test_action"
+        parent="estate_advertisements_menu" />
+
+    <menuitem id="estate_settings_menu" name="Settings" parent="estate_root_menu" />
 
 
-    <menuitem id="estate_settings_menu" name="Settings" parent="estate_root_menu">
-        <menuitem id="estate_model_type_property_type_action"
-            action="estate_property_type_menu_action" />
-    </menuitem>
+    <menuitem id="estate_model_type_property_type_action"
+        action="estate_property_type_menu_action" parent="estate_settings_menu" />
+
+    <menuitem id="estate_model_tag_property_action"
+        action="estate_property_tag_menu_action" parent="estate_settings_menu" />
 </odoo>
